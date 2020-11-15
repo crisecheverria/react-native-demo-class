@@ -18,7 +18,7 @@ const App = () => {
         <Text style={styles.textoNormal}>Nublado</Text>
         <Text style={styles.textoMedio}>10°</Text>
         <Image 
-          source={{uri: 'https://s3-us-west-2.amazonaws.com/melingoimages/Images/17425.jpg'}}
+          source={{uri: 'https://cdn4.iconfinder.com/data/icons/weather-forecast-flat-1/64/rain_rainy_weather_weather_forecast-512.png'}}
           style={{width: 200, height: 200}}
         />
         <TextInput
