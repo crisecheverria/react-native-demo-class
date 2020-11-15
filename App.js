@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  SafeAreaView,
   View,
   Text,
   Image,
@@ -9,18 +10,22 @@ import {
 
 const App = () => {
   return (
-    <View style={styles.contenedor}>
-      <Text style={styles.textoLargo}>Estocolmo</Text>
-      <Text style={styles.textoNormal}>Nublado</Text>
-      <Text style={styles.textoMedio}>10°</Text>
-      <Image 
-        source={{uri: 'https://s3-us-west-2.amazonaws.com/melingoimages/Images/17425.jpg'}}
-        style={{width: 200, height: 200}}
-      />
-      <TextInput
-        style={styles.textInput}
-      />
-    </View>
+    <SafeAreaView
+      style={styles.contenedor}
+    >
+      <View style={styles.contenedor}>
+        <Text style={styles.textoLargo}>Estocolmo</Text>
+        <Text style={styles.textoNormal}>Nublado</Text>
+        <Text style={styles.textoMedio}>10°</Text>
+        <Image 
+          source={{uri: 'https://s3-us-west-2.amazonaws.com/melingoimages/Images/17425.jpg'}}
+          style={{width: 200, height: 200}}
+        />
+        <TextInput
+          style={styles.textInput}
+        />
+      </View>
+    </SafeAreaView>
   );
 };
 
