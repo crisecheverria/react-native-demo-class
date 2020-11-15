@@ -17,9 +17,11 @@ const App = () => {
             paddingVertical: 20   
           }}>
           <View>
-            <Text>Más texto</Text>
+            <Text>Estocolmo</Text>
+            <Text>Nublado</Text>
+            <Text>10°</Text>
             <Image 
-              source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/800px-React-icon.svg.png'}}
+              source={{uri: 'https://s3-us-west-2.amazonaws.com/melingoimages/Images/17425.jpg'}}
               style={{width: 200, height: 200}}
              />
           </View>
