@@ -11,11 +11,7 @@ import {
 const App = () => {
   return (
       <SafeAreaView>
-        <ScrollView
-          style={{ 
-            paddingHorizontal: 20,
-            paddingVertical: 20   
-          }}>
+        <ScrollView>
           <View>
             <Text>Estocolmo</Text>
             <Text>Nublado</Text>
