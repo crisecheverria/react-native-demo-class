@@ -6,6 +6,8 @@ import {
   Image,
   TextInput,
   StyleSheet,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import axios from 'axios';
 
@@ -34,19 +36,24 @@ const App = () => {
     <SafeAreaView
       style={styles.contenedor}
     >
-      <View style={styles.view}>
-        <Text style={styles.textoLargo}>Estocolmo</Text>
-        <Text style={styles.textoNormal}>Nublado</Text>
-        <Text style={styles.textoMedio}>10°</Text>
-        <Image 
-          source={{uri: 'https://cdn4.iconfinder.com/data/icons/weather-forecast-flat-1/64/rain_rainy_weather_weather_forecast-512.png'}}
-          style={{width: 200, height: 200}}
-        />
-        <TextInput
-          style={styles.textInput}
-          onChangeText={(e) => setQuery(e)}
-        />
-      </View>
+      <KeyboardAvoidingView
+        behavior={Platform.OS == "ios" ? "padding" : "height"}
+        style={styles.contenedor}
+      >
+        <View style={styles.view}>
+          <Text style={styles.textoLargo}>Estocolmo</Text>
+          <Text style={styles.textoNormal}>Nublado</Text>
+          <Text style={styles.textoMedio}>10°</Text>
+          <Image 
+            source={{uri: 'https://cdn4.iconfinder.com/data/icons/weather-forecast-flat-1/64/rain_rainy_weather_weather_forecast-512.png'}}
+            style={styles.imagen}
+          />
+          <TextInput
+            style={styles.textInput}
+            onChangeText={(e) => setQuery(e)}
+          />
+        </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -69,6 +76,10 @@ const styles = StyleSheet.create({
   },
   textoNormal: {
     fontSize: 18
+  },
+  imagen: {
+    width: 200, 
+    height: 200
   },
   textInput: {
     height: 40,
