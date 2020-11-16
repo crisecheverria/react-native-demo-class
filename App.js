@@ -13,7 +13,7 @@ const App = () => {
     <SafeAreaView
       style={styles.contenedor}
     >
-      <View style={styles.contenedor}>
+      <View style={styles.view}>
         <Text style={styles.textoLargo}>Estocolmo</Text>
         <Text style={styles.textoNormal}>Nublado</Text>
         <Text style={styles.textoMedio}>10°</Text>
@@ -31,6 +31,9 @@ const App = () => {
 
 const styles = StyleSheet.create({
   contenedor: {
+    flex: 1,
+  },
+  view: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
