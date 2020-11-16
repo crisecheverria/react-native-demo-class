@@ -19,7 +19,7 @@ const App = () => {
         <Text style={styles.textoMedio}>10°</Text>
         <Image 
           source={{uri: 'https://cdn4.iconfinder.com/data/icons/weather-forecast-flat-1/64/rain_rainy_weather_weather_forecast-512.png'}}
-          style={{width: 200, height: 200}}
+          style={styles.imagen}
         />
         <TextInput
           style={styles.textInput}
@@ -47,6 +47,10 @@ const styles = StyleSheet.create({
   },
   textoNormal: {
     fontSize: 18
+  },
+  imagen: {
+    width: 200, 
+    height: 200
   },
   textInput: {
     height: 40,
