@@ -36,17 +36,17 @@ const App = () => {
       style={styles.contenedor}
     >
       <View style={styles.view}>
-          <Text style={styles.textoLargo}>Estocolmo</Text>
-          <Text style={styles.textoNormal}>Nublado</Text>
-          <Text style={styles.textoMedio}>10°</Text>
-          <Image 
-            source={{uri: 'https://cdn4.iconfinder.com/data/icons/weather-forecast-flat-1/64/rain_rainy_weather_weather_forecast-512.png'}}
-            style={{width: 200, height: 200}}
-          />
-          <TextInput
-            style={styles.textInput}
-            onChangeText={(e) => setQuery(e)}
-          />
+        <Text style={styles.textoLargo}>Estocolmo</Text>
+        <Text style={styles.textoNormal}>Nublado</Text>
+        <Text style={styles.textoMedio}>10°</Text>
+        <Image 
+          source={{uri: 'https://cdn4.iconfinder.com/data/icons/weather-forecast-flat-1/64/rain_rainy_weather_weather_forecast-512.png'}}
+          style={{width: 200, height: 200}}
+        />
+        <TextInput
+          style={styles.textInput}
+          onChangeText={(e) => setQuery(e)}
+        />
       </View>
     </SafeAreaView>
   );
