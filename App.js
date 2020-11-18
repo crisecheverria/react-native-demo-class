@@ -8,6 +8,8 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
+  Button,
+  ActivityIndicator,
 } from 'react-native';
 import axios from 'axios';
 
@@ -18,26 +20,35 @@ const App = () => {
     temperatura: 0,
     icono: '',
   });
+  const [query, actualizarQuery] = useState('stockholm');
+  const [busqueda, actualizarBusqueda] = useState('stockholm');
+  const [descargando, actualizarDescarga] = useState(false);
   useEffect(() => {
     async function fetchClima() {
-      const id = await axios(
-        'https://www.metaweather.com/api/location/search/?query=stockholm',
-      );
-      const {woeid} = id.data[0];
-      const resp = await axios(
-        `https://www.metaweather.com/api/location/${woeid}/`,
-      );
+      try {
+        actualizarDescarga(true);
+        const id = await axios(
+          `https://www.metaweather.com/api/location/search/?query=${query}`,
+        );
+        const {woeid} = id.data[0];
+        const resp = await axios(
+          `https://www.metaweather.com/api/location/${woeid}/`,
+        );
 
-      actualizarData({
-        clima: resp.data.consolidated_weather[0].weather_state_name,
-        ciudad: resp.data.title,
-        temperatura: resp.data.consolidated_weather[0].the_temp,
-        icono: resp.data.consolidated_weather[0].weather_state_abbr,
-      });
+        actualizarData({
+          clima: resp.data.consolidated_weather[0].weather_state_name,
+          ciudad: resp.data.title,
+          temperatura: resp.data.consolidated_weather[0].the_temp,
+          icono: resp.data.consolidated_weather[0].weather_state_abbr,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+      actualizarDescarga(false);
     }
 
     fetchClima();
-  }, []);
+  }, [busqueda]);
 
   const {clima, temperatura, ciudad, icono} = data;
 
@@ -47,6 +58,11 @@ const App = () => {
         behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
         style={styles.contenedor}>
         <View style={styles.view}>
+          {descargando && (
+            <View style={[styles.contenedor, styles.horizontal]}>
+              <ActivityIndicator size="large" color="#0000ff" />
+            </View>
+          )}
           <Text style={styles.textoLargo}>{ciudad}</Text>
           <Text style={styles.textoNormal}>{clima}</Text>
           <Text style={styles.textoMedio}>{`${Math.round(temperatura)}°`}</Text>
@@ -56,7 +72,18 @@ const App = () => {
             }}
             style={styles.imagen}
           />
-          <TextInput style={styles.textInput} />
+          <View>
+            <TextInput
+              style={styles.textInput}
+              onChangeText={(e) => actualizarQuery(e)}
+            />
+            <Button
+              onPress={() => actualizarBusqueda(query)}
+              title="Buscar"
+              color="#841584"
+              accessibilityLabel="Boton de busqueda"
+            />
+          </View>
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -93,6 +120,11 @@ const styles = StyleSheet.create({
     width: 300,
     marginTop: 20,
     paddingHorizontal: 10,
+  },
+  horizontal: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 10,
   },
 });
 
