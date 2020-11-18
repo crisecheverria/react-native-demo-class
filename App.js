@@ -28,11 +28,12 @@ const App = () => {
         `https://www.metaweather.com/api/location/${woeid}/`,
       );
 
+      const result = resp.data.consolidated_weather[0];
       actualizarData({
-        clima: resp.data.consolidated_weather[0].weather_state_name,
+        clima: result.weather_state_name,
         ciudad: resp.data.title,
-        temperatura: resp.data.consolidated_weather[0].the_temp,
-        icono: resp.data.consolidated_weather[0].weather_state_abbr,
+        temperatura: result.the_temp,
+        icono: result.weather_state_abbr,
       });
     }
 
